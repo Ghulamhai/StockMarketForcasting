@@ -21,7 +21,6 @@ Intel Core i5 processor
 8 GB RAM
 512 GB SSD
 
-
 Software:
 Python 3.10.11
 Jupyter Notebook
@@ -36,11 +35,8 @@ Libraries and Versions
 Library
 Version
 
-
-
 Python
 3.10.11
-
 
 Pandas
 1.4.4
@@ -49,18 +45,14 @@ Pandas
 scikit-learn
 1.1.2
 
-
 Matplotlib
 3.5.1
-
 
 TensorFlow
 2.11.0
 
-
 yfinance
 0.2.14
-
 
 Setup Instructions
 
@@ -68,11 +60,9 @@ Clone the Repository:
 git clone https://github.com/Ghulamhai/StockMarketForcasting.git
 cd stock-price-forecasting
 
-
 Create a Virtual Environment:
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
 
 Install Dependencies:
 pip install -r requirements.txt
@@ -82,14 +72,10 @@ Download Dataset:
 
 The project uses stock data from Yahoo Finance. The dataset is downloaded automatically using the yfinance library during script execution.
 
-
 Run the Application:
 python app.py
 
-
 Access the web application at http://localhost:5000.
-
-
 
 Project Structure
 
@@ -123,14 +109,12 @@ Use the provided Jupyter notebook (notebooks/train_test_LSTM.ipynb) to train the
 The notebook includes steps for data preprocessing, model training, and prediction generation.
 
 
-
 Methodology
 
 Data Collection:
 
 Historical stock data is sourced from Yahoo Finance using the yfinance library.
 A "Pandemic" column is added to indicate pandemic (1) or non-pandemic (0) periods.
-
 
 Feature Engineering:
 
@@ -144,11 +128,8 @@ A 4-layer LSTM model with 50 neurons in the first three layers (ReLU activation)
 Optimizer: Adam
 Loss function: Mean Squared Error (MSE)
 
-
 Train-Test Split:
-
 65% training data, 35% testing data.
-
 
 Evaluation Metrics:
 
@@ -158,23 +139,17 @@ Root Mean Squared Error (RMSE)
 
 
 Prediction:
-
 Uses the last 100 days of data to predict the next 30 days.
 Predictions are visualized using Plotly graphs.
 
-
-
 Results
-
 Univariate LSTM (Reliance Dataset):
 Train: MAE: 0.00159, MSE: 8.64e-06, RMSE: 0.00294
 Test: MAE: 0.01658, MSE: 0.00070, RMSE: 0.02651
 
-
 Multivariate LSTM (Reliance Dataset):
 Train: MAE: 0.00175, MSE: 7.40e-06, RMSE: 0.00272
 Test: MAE: 0.01791, MSE: 0.00099, RMSE: 0.03147
-
 
 The multivariate LSTM model maintains similar accuracy to the univariate model while adding the capability to handle pandemic scenarios.
 
