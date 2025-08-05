@@ -1,122 +1,196 @@
-# Stock Price Prediction using Multivariate LSTM 
+Stock Price Forecasting Using LSTM
+Overview
+This project focuses on developing a stock price forecasting system using Long Short-Term Memory (LSTM) neural networks. The system leverages historical stock price data and incorporates multivariate analysis to improve prediction accuracy, particularly during challenging market conditions such as pandemics or recessions. The project includes a web application built with Flask, providing a user-friendly interface for both clients and admins to interact with stock price predictions.
+Features
 
-This project presents a robust system for stock price forecasting using a **Long Short-Term Memory (LSTM)** neural network. The model employs a **multivariate analysis** approach by incorporating an external factor—the presence of a pandemic—to improve prediction accuracy, especially during volatile market conditions. The system is deployed as a web application with distinct interfaces for users and administrators.
+LSTM-Based Prediction: Utilizes a 4-layer LSTM neural network to predict stock prices based on historical data.
+Multivariate Analysis: Incorporates a "Pandemic" feature to enhance prediction accuracy during specific market conditions.
+Web Application: Built with Flask, offering:
+Client Area: Allows users to log in, select a company, and view predicted stock prices with interactive graphs.
+Admin Area: Enables admins to generate prediction graphs for specific companies, with options to account for pandemic or non-pandemic scenarios.
 
----
 
-## Key Features
+Data Visualization: Uses Plotly and Matplotlib to display historical and predicted stock prices.
+Dataset: Historical stock data sourced from Yahoo Finance using the yfinance library.
 
-* **Accurate Forecasting:** Utilizes a 4-layer LSTM neural network to capture long-term dependencies in time-series data.
-* **Multivariate Analysis:** Enhances prediction by factoring in market conditions like a pandemic, making the model more resilient to economic shocks.
-* **Web Application:** A user-friendly interface built with Flask, allowing users to get real-time stock predictions.
-* **User & Admin Roles:**
-    * **Client:** Can register/login and view 30-day price forecasts for desired stocks.
-    * **Admin:** Can generate and analyze prediction graphs for different scenarios (pandemic vs. non-pandemic).
-* **Interactive Visualizations:** Historical data and predicted prices are displayed using interactive Plotly graphs for clear visual comparison.
-* **Comprehensive Evaluation:** Model performance is rigorously tested using Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE).
+Installation
+Prerequisites
 
----
+Hardware:
+Intel Core i5 processor
+8 GB RAM
+512 GB SSD
 
-##  Technology Stack
 
-* **Backend:** Python, Flask
-* **Machine Learning:** TensorFlow, Keras, Scikit-learn
-* **Data Handling & Analysis:** Pandas, NumPy
-* **Data Retrieval:** `yfinance`
-* **Data Visualization:** Plotly, Matplotlib
-* **Development Environment:** Jupyter Notebook
-
----
-
-## System Architecture
-
-The project follows a structured workflow from data collection to deployment:
-
-1.  **Data Collection:** Historical stock data (Open, High, Low, Close, Volume) is fetched using the `yfinance` library.
-2.  **Data Preprocessing:**
-    * **Feature Engineering:** A `pandemic` column is added to the dataset (1 for pandemic period, 0 otherwise) to enable multivariate analysis.
-    * **Normalization:** Data is scaled to a `[-1, 1]` range using `MinMaxScaler` to optimize model training.
-3.  **Train-Test Split:** The dataset is split into 65% for training and 35% for testing.
-4.  **Model Training:**
-    * A 4-layer stacked LSTM model is constructed with 50 neurons in the first three layers (`relu` activation) and 1 neuron in the output layer.
-    * The model is compiled using the **Adam optimizer** and **Mean Squared Error** as the loss function.
-5.  **Prediction & Forecasting:** The trained model predicts the next day's stock price. This process is repeated iteratively to forecast prices for the next 30 days.
-6.  **Web Application:** The trained model is integrated into a Flask web application that serves predictions to users.
+Software:
+Python 3.10.11
+Jupyter Notebook
+Required Python libraries (listed below)
 
 
 
+Libraries and Versions
 
-## Setup and Installation
 
-To run this project locally, follow these steps:
 
-1.  **Clone the repository:**
-    ```sh
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
+Library
+Version
 
-2.  **Create a virtual environment (recommended):**
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
 
-3.  **Install the required libraries:**
-    A `requirements.txt` file should contain the following:
-    ```
-    pandas
-    numpy
-    yfinance
-    tensorflow
-    scikit-learn
-    plotly
-    flask
-    ```
-    Install them using pip:
-    ```sh
-    pip install -r requirements.txt
-    ```
 
-4.  **Train the Model:**
-    Run the training script to fetch data and train the LSTM model. The script will save the trained model as an `.h5` file.
-    ```python
-    # (From the provided source code in 4.4.1)
-    import yfinance as yf
-    # ... rest of the training code ...
-    model.save('Reliance_Mul_1_LSTM.h5')
-    ```
+Python
+3.10.11
 
-5.  **Run the Flask Application:**
-    Start the web server to launch the application.
-    ```sh
-    flask run
-    ```
-    Navigate to `http://127.0.0.1:5000` in your web browser.
 
----
+Pandas
+1.4.4
 
-## Results and Analysis
 
-The project successfully demonstrates that a multivariate LSTM model can effectively forecast stock prices.
+scikit-learn
+1.1.2
 
-* **Performance:** The model achieved low MAE, MSE, and RMSE values on the test dataset, indicating a high degree of prediction accuracy.
-* **Univariate vs. Multivariate:** While the univariate model performed well, the multivariate model offers the critical advantage of adapting to major economic events (like a pandemic), making its predictions more robust and context-aware.
-* **Visual Validation:** The prediction graphs show that the model's forecasts closely follow the actual trends of the stock price, confirming its ability to learn underlying patterns.
 
-| Evaluation Metrics (Test Data) | Multivariate LSTM Result |
-| :----------------------------- | :----------------------- |
-| **MAE** | 0.0179                   |
-| **MSE** | 0.00099                  |
-| **RMSE** | 0.0314                   |
+Matplotlib
+3.5.1
 
----
 
-## Future Work
+TensorFlow
+2.11.0
 
-To further enhance this project, the following directions can be explored:
 
-* **Incorporate More Features:** Add other data sources like news sentiment, social media trends, and macroeconomic indicators.
-* **Explore Ensemble Methods:** Combine the LSTM model with other algorithms (e.g., ARIMA, Random Forest) to improve prediction stability and accuracy.
-* **Hyperparameter Tuning:** Systematically optimize model parameters (e.g., number of layers, neurons, learning rate) for even better performance.
-* **Enhance Interpretability:** Use techniques like SHAP (SHapley Additive exPlanations) to better understand the model's decision-making process.
+yfinance
+0.2.14
+
+
+Setup Instructions
+
+Clone the Repository:
+git clone https://github.com/Ghulamhai/StockMarketForcasting.git
+cd stock-price-forecasting
+
+
+Create a Virtual Environment:
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+
+Install Dependencies:
+pip install -r requirements.txt
+
+
+Download Dataset:
+
+The project uses stock data from Yahoo Finance. The dataset is downloaded automatically using the yfinance library during script execution.
+
+
+Run the Application:
+python app.py
+
+
+Access the web application at http://localhost:5000.
+
+
+
+Project Structure
+
+app.py: Main Flask application file for the web interface.
+Reliance.csv: Sample dataset for Reliance stock (downloaded via yfinance).
+Reliance_Mul_1_LSTM.h5: Trained LSTM model file.
+Reliance_Graph_pan_0.html: Generated HTML file for visualization of predictions.
+templates/: Directory containing HTML templates for the web interface.
+static/: Directory for static files (e.g., CSS, JavaScript).
+notebooks/: Jupyter notebooks for data preprocessing, model training, and evaluation.
+
+Usage
+
+Client Usage:
+
+Register or log in to the client area.
+Select a company to view its stock price predictions.
+Visualize historical and predicted stock prices through interactive graphs.
+
+
+Admin Usage:
+
+Log in to the admin area.
+Choose a company and specify whether to account for pandemic conditions.
+Generate and view prediction graphs.
+
+
+Running the LSTM Model:
+
+Use the provided Jupyter notebook (notebooks/train_test_LSTM.ipynb) to train the LSTM model and evaluate its performance.
+The notebook includes steps for data preprocessing, model training, and prediction generation.
+
+
+
+Methodology
+
+Data Collection:
+
+Historical stock data is sourced from Yahoo Finance using the yfinance library.
+A "Pandemic" column is added to indicate pandemic (1) or non-pandemic (0) periods.
+
+
+Feature Engineering:
+
+Selected features: Close price and Pandemic indicator.
+Data is normalized using MinMaxScaler for model training.
+
+
+Model Architecture:
+
+A 4-layer LSTM model with 50 neurons in the first three layers (ReLU activation) and 1 neuron in the output layer.
+Optimizer: Adam
+Loss function: Mean Squared Error (MSE)
+
+
+Train-Test Split:
+
+65% training data, 35% testing data.
+
+
+Evaluation Metrics:
+
+Mean Absolute Error (MAE)
+Mean Squared Error (MSE)
+Root Mean Squared Error (RMSE)
+
+
+Prediction:
+
+Uses the last 100 days of data to predict the next 30 days.
+Predictions are visualized using Plotly graphs.
+
+
+
+Results
+
+Univariate LSTM (Reliance Dataset):
+Train: MAE: 0.00159, MSE: 8.64e-06, RMSE: 0.00294
+Test: MAE: 0.01658, MSE: 0.00070, RMSE: 0.02651
+
+
+Multivariate LSTM (Reliance Dataset):
+Train: MAE: 0.00175, MSE: 7.40e-06, RMSE: 0.00272
+Test: MAE: 0.01791, MSE: 0.00099, RMSE: 0.03147
+
+
+The multivariate LSTM model maintains similar accuracy to the univariate model while adding the capability to handle pandemic scenarios.
+
+Future Work
+
+Incorporate additional data sources (e.g., news sentiment, economic indicators).
+Explore ensemble methods combining LSTM with ARIMA or random forests.
+Enhance model interpretability and long-term forecasting accuracy.
+
+Limitations
+
+Limited historical context and sensitivity to input features.
+Challenges with non-stationarity of stock prices and long-term predictions.
+Dependence on data quality and availability.
+
+Conclusion
+This project demonstrates the effectiveness of LSTM models in stock price forecasting, with the multivariate approach offering improved handling of specific market conditions like pandemics. The web application provides an accessible interface for users to interact with predictions, making it a valuable tool for investors and traders.
+License
+This project is licensed under the MIT License.
